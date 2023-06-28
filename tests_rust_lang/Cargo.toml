@@ -1,0 +1,8 @@
+[package]
+name = "tests_rust_lang"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = ["lang_core","lang_tests"]
+

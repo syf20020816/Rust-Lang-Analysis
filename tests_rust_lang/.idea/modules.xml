@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lang_core/lang_core.iml" filepath="$PROJECT_DIR$/lang_core/lang_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lang_tests/lang_tests.iml" filepath="$PROJECT_DIR$/lang_tests/lang_tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tests_rust_lang.iml" filepath="$PROJECT_DIR$/tests_rust_lang.iml" />
+    </modules>
+  </component>
+</project>
