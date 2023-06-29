@@ -4,6 +4,8 @@
 
 - package : `src/num/shells/int_macros.rs`
 
+![](https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/int_macros.png)
+
 ## Preface
 
 在这里所有的i和u类型，即`i8,u8,i16...`构建的代码形如：
@@ -22,7 +24,7 @@ int_module! { isize }
 
 <hr />
 
-## Source
+## Ⓜ️Source
 
 在看源码时，我们需要删除一些不需要的东西，比如doc相关的，最后我们就会得到下面的内容：
 

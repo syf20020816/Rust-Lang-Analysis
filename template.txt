@@ -1,0 +1,17 @@
+# int_macros
+
+请参看`tests_rust_lang/lang_tests/src/core_tests/num_shells_int_macros.rs`
+
+- package : `src/num/shells/int_macros.rs`
+
+## Preface
+
+
+
+<hr />
+
+## Ⓜ️Source
+
+## Code
+
+https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/
