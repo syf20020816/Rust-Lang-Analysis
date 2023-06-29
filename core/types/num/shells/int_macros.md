@@ -4,7 +4,7 @@
 
 - package : `src/num/shells/int_macros.rs`
 
-![](https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/int_macros.png)
+<img src="https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/int_macros.png">
 
 ## Preface
 

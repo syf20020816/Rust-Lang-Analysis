@@ -12,4 +12,4 @@
 
 > note ： 向左旋转变大，向右旋转变小
 
-![](https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/ro_example.png)
+<img src="https://github.com/syf20020816/Rust-Lang-Analysis/tree/main/imgs/ro_example.png">
