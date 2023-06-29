@@ -10,11 +10,7 @@ pub mod core_tests;
 
 use lang_core::error::MyError;
 use lang_core::my_core::{ParseIntError, IntErrorKind};
-
 fn main() {
-    let a = ParseIntError {
-        kind: IntErrorKind::Zero
-    };
-    println!("ParseIntError-description: {}", a.description());
-    println!("IntErrorKind: {:?}",a.kind());
+    println!("{}",i8)
+
 }

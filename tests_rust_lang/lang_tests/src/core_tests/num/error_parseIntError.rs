@@ -1,6 +1,6 @@
 //!# Error
 //! 
-//! 请参看`tests_rust_lang/lang_tests/src/core_tests/num_error_parseIntError.rs`
+//! 请参看`tests_rust_lang/lang_tests/src/core_tests/num/error_parseIntError.rs`
 //! 
 //! - package : `src/num/error.rs`
 //! 

@@ -8,7 +8,7 @@
 //!
 //! # int_macros
 //!
-//! 请参看`tests_rust_lang/lang_tests/src/core_tests/num_shells_int_macros.rs`
+//! 请参看`tests_rust_lang/lang_tests/src/core_tests/num/shells/int_macros.rs`
 //!
 //! - package : `src/num/shells/int_macros.rs`
 //!

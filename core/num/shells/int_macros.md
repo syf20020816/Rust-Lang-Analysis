@@ -1,6 +1,6 @@
 # int_macros
 
-请参看`tests_rust_lang/lang_tests/src/core_tests/num_shells_int_macros.rs`
+请参看`tests_rust_lang/lang_tests/src/core_tests/num/shells/int_macros.rs`
 
 - package : `src/num/shells/int_macros.rs`
 
@@ -32,7 +32,7 @@ int_module! { isize }
 ① macro_rules! int_module {
     ② ($T:ident) => (int_module!($T, #[stable(feature = "rust1", since = "1.0.0")]);); 
     ③ ($T:ident, #[$attr:meta]) => (
-        
+
         #[$attr]
         #[deprecated(since = "TBD", note = "replaced by the `MIN` associated constant on this type")]
         pub const MIN: $T = $T::MIN;
@@ -42,7 +42,6 @@ int_module! { isize }
         pub const MAX: $T = $T::MAX;
     )
 }
-
 ```
 
 - ① int_module是int_macros中所实现的声明宏
@@ -50,9 +49,9 @@ int_module! { isize }
 - ②输入为`$T:ident`说明接收的是标识符，然后转化为`int_module!($T, #[stable(feature = "rust1", since = "1.0.0")])`，例如：`int_module!(u8) --> int_module!(u8,#[stable(feature = "rust1", since = "1.0.0")])`
 
 - ③识别输入`($T:ident, #[$attr:meta])`生成MAX和MIN，MAX和MIN就是输入标识符的类型最后得到如（以i8为例）：
-
-  ​	
-
+  
+  ​    
+  
   ```rust
           #[stable(feature = "rust1", since = "1.0.0")]
           #[deprecated(since = "TBD", note = "replaced by the `MIN` associated constant on this type")]
@@ -62,9 +61,9 @@ int_module! { isize }
           #[deprecated(since = "TBD", note = "replaced by the `MAX` associated constant on this type")]
           pub const MAX: i8 = i8::MAX;
   ```
-
+  
   所以实际上我们看到i8.rs中的代码应该是：
-
+  
   ```rust
   #![stable(feature = "rust1", since = "1.0.0")]
   #![deprecated(
@@ -93,4 +92,3 @@ fn main() {
     println!("{}",my_i8::MIN);
 }
 ```
-
