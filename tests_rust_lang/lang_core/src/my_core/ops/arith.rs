@@ -18,6 +18,7 @@ use crate::forward_ref_binop;
 /// please see:
 /// 1. Add(trait)
 /// 2. add_impl!(macro)
+#[const_trait]
 pub trait Add<Rhs = Self> {
     /// the type after add
     type Output;
@@ -28,8 +29,8 @@ pub trait Add<Rhs = Self> {
 /// impl add for num types
 /// see : forward_ref_binop!(macro)
 macro_rules! add_impl {
-    ($($t:ty)*) => {
-        /// why use const Add for $t, please read : technical_term.md
+    ($($t:ty)*) => ($(
+     /// why use const Add for $t, please read : technical_term.md
         impl const Add for $t{
             type Output = $t;
 
@@ -38,7 +39,7 @@ macro_rules! add_impl {
             }
         }
         forward_ref_binop!{impl const Add, add for $t, $t }
-    };
+    )*);
 }
 
-add_impl! {i8,u8}
+add_impl! {u8}

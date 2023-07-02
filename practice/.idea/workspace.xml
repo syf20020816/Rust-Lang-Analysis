@@ -8,15 +8,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/internal_macros.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/arith.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/ops/arith/add.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/ops/arith/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/ops/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../std/core-knowledge.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../technical_term/technical_term.md" beforeDir="false" afterPath="$PROJECT_DIR$/../technical_term/technical_term.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/internal_macros.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/internal_macros.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/arith.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/arith.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +37,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="csyxubm8" />
@@ -99,7 +112,7 @@
       <option name="presentableId" value="Default" />
       <updated>1688030833595</updated>
       <workItem from="1688030834795" duration="1860000" />
-      <workItem from="1688305959881" duration="661000" />
+      <workItem from="1688305959881" duration="3952000" />
     </task>
     <servers />
   </component>

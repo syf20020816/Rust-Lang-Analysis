@@ -15,6 +15,20 @@ Rust 核心库是Rust 标准库的无依赖基础。它是语言和标准库库�
 
  ❗所以我们得出需要看std之前先看core
 
+### ❗Rust Nightly
+
+在运行本项目时你需要使用Nightly（前瞻版）不然将报错：`const trait impls are experimental`
+
+### ❗How to change Rust Nightly
+
+使用`rustup show`查看当前使用版本
+
+再使用`rustup default nightly`切换即可
+
+若你没有nightly请使用这个命令安装`rustup toolchain install nightly`
+
+<img src="https://github.com/syf20020816/Rust-Lang-Analysis/blob/main/imgs/rust_nightly.png">
+
 ## Ⓜ️My Learn Order
 
 1. Types
