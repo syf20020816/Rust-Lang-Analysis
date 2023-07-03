@@ -12,5 +12,7 @@ use lang_core::my_core::Add;
 
 
 fn main() {
-    println!("{}",Add::add(8_u8,1_u8))
+    println!("{}",Add::add(8_u8,1_u8));
+    println!("{}",Add::add(8_i8,102_i8));
+    println!("{}",Add::add(8_i32,100_i32));
 }

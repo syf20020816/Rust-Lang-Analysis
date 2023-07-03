@@ -42,4 +42,5 @@ macro_rules! add_impl {
     )*);
 }
 
-add_impl! {u8}
+/// you can add more
+add_impl! {u8 i8 u32 i32}

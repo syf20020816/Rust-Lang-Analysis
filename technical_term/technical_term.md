@@ -23,11 +23,11 @@
 
 ## Const Trait
 
-在Rust中，`impl MyITrait`和`impl const MyTrait`之间有一些区别。
+在Rust中，`impl MyTrait`和`impl const MyTrait`之间有一些区别。
 
-1. 功能特性：`impl MyITrait`用于实现一个普通的trait，该trait可以包含任意的方法和关联类型。而`impl const MyTrait`用于实现一个特殊的trait，该trait只能包含具有`const`修饰符的方法。
-2. 方法调用：对于`impl MyITrait`实现的trait，其方法可以通过实例对象进行调用，即可以使用动态分发。而`impl const MyTrait`实现的trait中的方法只能通过类型名直接调用，即使用静态分发。
-3. 特化常量：`impl MyITrait`可以在实现中使用特定的常量值。对于`impl const MyTrait`，它允许在trait的方法中使用const常量，并保证在编译时进行计算。这可以用于在编译期间优化代码。
+1. 功能特性：`impl MyTrait`用于实现一个普通的trait，该trait可以包含任意的方法和关联类型。而`impl const MyTrait`用于实现一个特殊的trait，该trait只能包含具有`const`修饰符的方法。
+2. 方法调用：对于`impl MyTrait`实现的trait，其方法可以通过实例对象进行调用，即可以使用动态分发。而`impl const MyTrait`实现的trait中的方法只能通过类型名直接调用，即使用静态分发。
+3. 特化常量：`impl MyTrait`可以在实现中使用特定的常量值。对于`impl const MyTrait`，它允许在trait的方法中使用const常量，并保证在编译时进行计算。这可以用于在编译期间优化代码。
 
 需要注意的是，`impl const`是Rust 1.50版本引入的新功能，因此如果你使用较早的Rust版本，可能不支持`impl const`。
 
