@@ -6,5 +6,8 @@
 //!
 //! what's more add `#[const_trait]` on trait
 #![feature(const_trait_impl)]
+//! `#![feature(lang_items)]`
+//! means design a lang items
+#![feature(lang_items)]
 pub mod my_core;
 pub mod error;

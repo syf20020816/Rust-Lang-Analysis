@@ -1,3 +1,14 @@
+//! int_impl
+//! ```txt
+//! @author:syf20020816@Outlook.com
+//! @date:2023/7/3
+//! @version:0.0.1
+//! @description:
+//! ```
+//!
+
+use super::from_str_radix;
+
 #[macro_export]
 macro_rules! int_impl {
     (
@@ -30,26 +41,14 @@ macro_rules! int_impl {
         pub const MAX:$UnsignedT = <$UnsignedT>::MAX >> 1;
         /// Space occupied by type (bits) such as i8 : 8bits
         pub const BITS: u32 = <$UnsignedT>::BITS;
-        /// impl for Self
-        /// if myType is MyImplI8
-        /// ```txt
-        /// impl MyImplI8{
-        ///     fn ...
-        /// }
-        /// ```
-        impl $SelfT{
-            /// here need from_str_radix function from `super::from_str_radix()`
-            ///
-            /// so we need to see this func
-            // pub fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseIntError> {
-            //     from_str_radix(src, radix)
-            // }
-            pub fn set_max(&mut self){
-                self.max = MAX;
-            }
-            pub fn set_min(&mut self){
-                self.min = MIN;
-            }
+
+
+        // here need from_str_radix function from `super::from_str_radix()`
+        //
+        // so we need to see this func
+        pub fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseIntError> {
+            from_str_radix(src, radix)
         }
+
     };
 }

@@ -1,12 +1,23 @@
+//! Num Type 的实现 👍更加推荐的方式
+//!
+//! Output use:
+//! - MyImplI8::MAX
+//! - MyImplI8::MIN
+//! - MyImplI8::BITS
+//! ```txt
+//! @author:syf20020816@Outlook.com
+//! @date:2023/7/3
+//! @version:0.0.1
+//! @description:
+//! ```
+
 use crate::int_impl;
 
 #[derive(Debug)]
-pub struct MyImplI8 {
-    pub max: u8,
-    pub min: i8,
-}
+pub struct MyImplI8;
 
-int_impl! {
+impl MyImplI8 {
+    int_impl! {
         SelfT = MyImplI8,
         ActualT = i8,
         UnsignedT = u8,
@@ -25,4 +36,5 @@ int_impl! {
         to_xe_bytes_doc = "",
         from_xe_bytes_doc = "",
         bound_condition = "",
+    }
 }

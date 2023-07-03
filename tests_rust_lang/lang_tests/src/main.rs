@@ -6,13 +6,14 @@
 //! @description:
 //! ```
 #![feature(const_trait_impl)]
+
 pub mod core_tests;
 
-use lang_core::my_core::Add;
-
+use lang_core::my_core::MyImplI8;
 
 fn main() {
-    println!("{}",Add::add(8_u8,1_u8));
-    println!("{}",Add::add(8_i8,102_i8));
-    println!("{}",Add::add(8_i32,100_i32));
+    println!("{}", MyImplI8::MAX);
+    println!("{}", MyImplI8::MIN);
+    println!("{}", MyImplI8::BITS);
+    println!("{:?}",u8::from_str_radix("55",10))
 }

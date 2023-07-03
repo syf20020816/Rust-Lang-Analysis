@@ -5,6 +5,7 @@
 //! @version:0.0.1
 //! @description:
 //! ```
+
 use crate::forward_ref_binop;
 
 /// 加法运算符+
@@ -18,6 +19,8 @@ use crate::forward_ref_binop;
 /// please see:
 /// 1. Add(trait)
 /// 2. add_impl!(macro)
+///<hr>
+/// `#[lang = "add"]` add if we need to use `+` == Add
 #[const_trait]
 pub trait Add<Rhs = Self> {
     /// the type after add
@@ -43,4 +46,4 @@ macro_rules! add_impl {
 }
 
 /// you can add more
-add_impl! {u8 i8 u32 i32}
+add_impl! {u8 i8 u32 i32 i64 u64 i16 u16 i128 u128 usize isize}
