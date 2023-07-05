@@ -185,3 +185,43 @@ pub fn from_str_radix<T: FromStrRadixHelper>(src: &str, radix: u32) -> Result<T,
     }
     Ok(result)
 }
+
+
+/// # midpoint (branchless algorithm)
+/// 获取2个数字的中点,使用右移
+/// ## why
+/// see : technical_term.md
+/// ## 中点
+/// 👎calc : 5+6 = 11 -> 11/2 = 5...1 -> judge(..1)舍弃余数 -> Result == 5
+/// 👍move : ((5^6)>>1) + (5&6) -> Result == 5
+/// ``` code
+/// macro_rules! midpoint_impl {
+///     ($($NumT:ty)*) => ($(
+///         pub const fn midpoint(self,rhs:$NumT)->$NumT{
+///             ((self^rhs)>>1) + (self&rhs)
+///         }
+///     )*);
+/// }
+///
+/// midpoint_impl!{u8 u16 u32 u64 u128}
+/// ```
+pub struct MidPoint<T>{
+    data:T
+}
+
+macro_rules! my_midpoint_impl {
+    ($($NumT:ty)*) => ($(
+        impl MidPoint<$NumT>{
+            pub const fn new(data:$NumT)->Self{
+                MidPoint{
+                    data
+                }
+            }
+            pub const fn calc_midpoint(self,rhs:$NumT)->$NumT{
+                ((self.data ^ rhs) >> 1) + (self.data & rhs)
+            }
+        }
+    )*);
+}
+
+my_midpoint_impl!{u8 u16 u32 u128}

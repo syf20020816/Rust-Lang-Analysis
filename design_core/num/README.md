@@ -70,3 +70,35 @@ println!("{:?}", MyImplI8::from_str_radix("16", 8));
 
 需要注意的是，`count_ones()` 作为一个内建方法，它的行为是与对应的平台和底层硬件相关的。因此，不同的运行环境下，`count_ones()` 可能会有不同的实现和性能特征。这就是为什么编译器会为每个 Unsigned 整数类型自动生成 `count_ones()` 方法，以便进行底层优化和适配。
 
+## 👍midpoint()
+
+使用branchless algorithm算法（see : technical_term.md）
+
+👎calc : 5+6 = 11 -> 11/2 = 5...1 -> judge(..1)舍弃余数 -> Result == 5
+
+👍move : ((5^6)>>1) + (5&6) -> Result == 5
+
+ ``` rust
+///重写实现并非源码
+pub struct MidPoint<T>{
+    data:T
+}
+
+macro_rules! my_midpoint_impl {
+    ($($NumT:ty)*) => ($(
+        impl MidPoint<$NumT>{
+            pub const fn new(data:$NumT)->Self{
+                MidPoint{
+                    data
+                }
+            }
+            pub const fn calc_midpoint(self,rhs:$NumT)->$NumT{
+                ((self.data ^ rhs) >> 1) + (self.data & rhs)
+            }
+        }
+    )*);
+}
+
+my_midpoint_impl!{u8 u16 u32 u128}
+ ```
+

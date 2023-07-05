@@ -9,3 +9,5 @@ pub use num::my_impl_i8::{MyImplI8};
 pub use num::error::{ParseIntError, IntErrorKind};
 /// output Add
 pub use ops::Add;
+
+pub use num::MidPoint;

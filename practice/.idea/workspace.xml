@@ -8,13 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
-      <change beforePath="$PROJECT_DIR$/../design_core/num/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../design_core/num/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/int_macros.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/int_macros.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/my_impl_i8.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/my_impl_i8.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/num/int_macros.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/num/int_macros.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

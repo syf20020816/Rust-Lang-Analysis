@@ -6,18 +6,13 @@
 //! @description:
 //! ```
 #![feature(const_trait_impl)]
+#![feature(num_midpoint)]
 
 pub mod core_tests;
 
-use std::net::SocketAddr;
-use lang_core::my_core::MyImplI8;
+use lang_core::my_core::MidPoint;
 
 fn main() {
-
-    let t = MyImplI8;
-    println!("{}", MyImplI8::MAX);
-    println!("{}", MyImplI8::MIN);
-    println!("{}", MyImplI8::BITS);
-    println!("{:?}", MyImplI8::from_str_radix("16", 8));
-    println!("{:?}",t.count_ones(56));
+    let m = MidPoint::<u8>::new(46_u8);
+    println!("{}", m.calc_midpoint(16_u8));
 }
