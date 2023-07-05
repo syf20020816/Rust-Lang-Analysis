@@ -49,6 +49,9 @@ macro_rules! int_impl {
         pub fn from_str_radix(src: &str, radix: u32) -> Result<$ActualT, ParseIntError> {
             from_str_radix(src, radix)
         }
+        pub fn count_ones(self,num:$ActualT)->u32{
+            (num as $UnsignedT).count_ones()
+        }
 
     };
 }

@@ -12,6 +12,8 @@
 
 <img src="https://github.com/syf20020816/Rust-Lang-Analysis/blob/main/imgs/arith_add.png">
 
+<img src="https://github.com/syf20020816/Rust-Lang-Analysis/blob/main/imgs/add_trait.png">
+
 ### Add
 
 ```rust
@@ -57,6 +59,10 @@ add_impl! {u8 i8 u32 i32}
 ```
 
 ### forward_ref_binop
+
+该宏的目的就是做兼容，兼容多种不同的借用规则（对所有权的思考）
+
+参看：`technical_term.md`的宏实现(常用形式)
 
 ```rust
 //! 实现一元运算符“op&T”

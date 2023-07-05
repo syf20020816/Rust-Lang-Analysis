@@ -22,6 +22,8 @@ Arith是各类运算符号的设计(`+,-,*,/,%`)
 
 需要注意的是，`impl const`是Rust 1.50版本引入的新功能，因此如果你使用较早的Rust版本，可能不支持`impl const`。
 
+> ❗note: 1.72.0中移除了const
+
 然后就是内部的对方法的实现同样分为3类(实现于`core/src/internal_macros.rs`)：
 
 1. `fn $method(self, rhs: $u)->Self::Output`
@@ -40,5 +42,77 @@ Arith是各类运算符号的设计(`+,-,*,/,%`)
                 self + rhs
             }
         }
+```
+
+然后在其中使用`forward_ref_binop!{impl const Add, add for $t, $t }`生成了如下代码进行兼容
+
+```rust
+#[macro_export]
+macro_rules! forward_ref_binop {
+    (impl const $impl:ident, $method:ident for $t:ty,$u:ty) => {
+        /// force:`forward_ref_binop!{impl const Add, add for $t, $t }`
+        /// <hr>
+        /// so we know : $t == $u
+
+        /// such as:
+        /// ``` code
+        /// impl<'a> const Add<u8> for &'a u8{
+        ///   // just like Self::Output
+        ///   type Output = <u8 as Add<u8>>::Output;
+        ///   fn add(self, rhs: u8)-><u8 as Add<u8>>::Output{
+        ///       Add::add(*self,rhs)
+        ///   }
+        /// }
+        /// ```
+        impl<'a> const $impl<$u> for &'a $t {
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: $u)-><$t as $impl<$u>>::Output{
+                $impl::$method(*self, rhs)
+            }
+        }
+        // such as:
+        // impl const $imp<&u8> for u8 {}
+        impl const $impl<&$u> for $t{
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: &$u)-><$t as $impl<$u>>::Output{
+                $impl::$method(self, *rhs)
+            }
+        }
+        // such as:
+        // impl const $imp<&u8> for &u8{}
+        impl const $impl<&$u> for &$t {
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: &$u)-><$t as $impl<$u>>::Output{
+                $impl::$method(*self, *rhs)
+            }
+        }
+    };
+    (impl $impl:ident, $method:ident for $t:ty,$u:ty) => {
+        impl<'a>  $impl<$u> for &'a $t {
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: $u)-><$t as $impl<$u>>::Output{
+                $impl::$method(*self, rhs)
+            }
+        }
+        impl $impl<&$u> for $t{
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: &$u)-><$t as $impl<$u>>::Output{
+                $impl::$method(self, *rhs)
+            }
+        }
+        impl $imp<&$u> for &$t {
+            type Output = <$t as $impl<$u>>::Output;
+
+            fn $method(self, rhs: &$u)-><$t as $impl<$u>>::Output{
+                $impl::$method(*self, *rhs)
+            }
+        }
+    };
+}
 ```
 

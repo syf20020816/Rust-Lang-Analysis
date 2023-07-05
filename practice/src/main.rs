@@ -8,6 +8,11 @@ pub mod tests;
 
 
 fn main() {
-
-    println!("{:?}",res);
+    //01
+    println!("{:?}",1_u8.count_ones());
+    //10
+    println!("{:?}",2_u8.count_ones());
+    //
+    println!("{:?}",53_u8.count_ones());
+    println!("{:?}",5_u8.count_ones());
 }

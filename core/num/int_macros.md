@@ -1,8 +1,10 @@
 # int_macros
 
-请参看`tests_rust_lang/lang_tests/src/core_tests/num_shells_int_macros.rs`
+请参看`tests_rust_lang/lang_tests/src/core_tests/num/int_macros.rs`
 
 - package : `src/num/int_macros.rs`
+
+<img src="https://github.com/syf20020816/Rust-Lang-Analysis/blob/main/imgs/impl_i8.png">
 
 ## Preface
 
@@ -102,20 +104,24 @@ macro_rules! int_impl {
 
 ## Code
 
-### step1: my_impl_i8
+1. my_impl_i8
+2. int_impl!
+3. from_str_radix()
+4. FromStrRadixHelper
+5. impl_helper_for
+6. can_not_overflow
 
-这里只是暂时的实现
+模拟实现
 
 ```rust
 use crate::int_impl;
+use crate::{ParseIntError, from_str_radix};
 
-#[derive(Debug)]
-pub struct MyImplI8 {
-    pub max: u8,
-    pub min: i8,
-}
+#[derive(Debug, Clone, Copy, PartialOrd, PartialEq)]
+pub struct MyImplI8;
 
-int_impl! {
+impl MyImplI8 {
+    int_impl! {
         SelfT = MyImplI8,
         ActualT = i8,
         UnsignedT = u8,
@@ -134,12 +140,58 @@ int_impl! {
         to_xe_bytes_doc = "",
         from_xe_bytes_doc = "",
         bound_condition = "",
+    }
 }
 ```
 
-### step2: int_impl!
 
-```
 
+``` rust
+#[macro_export]
+macro_rules! int_impl {
+    (
+        SelfT = $SelfT:ty,
+        ActualT = $ActualT:ident,
+        UnsignedT = $UnsignedT:ty,
+        BITS = $BITS:literal,
+        BITS_MINUS_ONE = $BITS_MINUS_ONE:literal,
+        Min = $Min:literal,
+        Max = $Max:literal,
+        rot = $rot:literal,
+        rot_op = $rot_op:literal,
+        rot_result = $rot_result:literal,
+        swap_op = $swap_op:literal,
+        swapped = $swapped:literal,
+        reversed = $reversed:literal,
+        le_bytes = $le_bytes:literal,
+        be_bytes = $be_bytes:literal,
+        to_xe_bytes_doc = $to_xe_bytes_doc:expr,
+        from_xe_bytes_doc = $from_xe_bytes_doc:expr,
+        bound_condition = $bound_condition:literal,
+    ) => {
+        /// build constant MIN and MAX
+        /// such as i8:
+        /// - pub const MIN:i8 = !i8::MAX , !(128) == -128
+        /// - pub const MAX:u8 = u8::MAX >> 1 , u8::MAX = 256 ,256 >> 1 == 128
+        ///
+        /// **see source code : pub const MIN: Self = !Self::MAX;**
+        pub const MIN:$ActualT = !$ActualT::MAX;
+        pub const MAX:$UnsignedT = <$UnsignedT>::MAX >> 1;
+        /// Space occupied by type (bits) such as i8 : 8bits
+        pub const BITS: u32 = <$UnsignedT>::BITS;
+
+
+        // here need from_str_radix function from `super::from_str_radix()`
+        //
+        // so we need to see this func
+        pub fn from_str_radix(src: &str, radix: u32) -> Result<$ActualT, ParseIntError> {
+            from_str_radix(src, radix)
+        }
+        pub fn count_ones(self,num:$ActualT)->u32{
+            (num as $UnsignedT).count_ones()
+        }
+
+    };
+}
 ```
 
