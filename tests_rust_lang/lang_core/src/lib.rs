@@ -11,3 +11,6 @@
 #![feature(lang_items)]
 pub mod my_core;
 pub mod error;
+
+pub use my_core::ParseIntError;
+pub use my_core::num::from_str_radix;

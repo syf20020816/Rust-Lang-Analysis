@@ -6,6 +6,7 @@ use core::mem;
 ///
 /// 原因：重写的ADD并无法实现通过运算符进行计算
 use std::ops::{Mul, RangeBounds, Sub, Add};
+use crate::my_core::MyImplI8;
 
 pub mod shells;
 mod int_macros;
@@ -17,12 +18,18 @@ use self::error::{ParseIntError, IntErrorKind};
 
 /// 确定该基数长度的文本字符串是否可以保证存储在给定的类型T中。
 /// 请注意，如果编译器知道基数，则只需在运行时检查digit.len即可。
+/// if T == u32 :
+/// ``` code
+/// mem::size_of::<u32>() == 4 //u32为4个字节
+/// is_signed_ty as usize == 1 | 0 //true == 1 , false == 0
+/// digits.len()
+/// ```
 pub fn can_not_overflow<T>(radix: u32, is_signed_ty: bool, digits: &[u8]) -> bool {
     radix <= 16 && digits.len() <= mem::size_of::<T>() * 2 - is_signed_ty as usize
 }
 
 
-trait FromStrRadixHelper:
+pub trait FromStrRadixHelper:
 PartialOrd + Copy + Add<Output=Self> + Sub<Output=Self> + Mul<Output=Self>
 {
     const MIN: Self;
@@ -31,6 +38,7 @@ PartialOrd + Copy + Add<Output=Self> + Sub<Output=Self> + Mul<Output=Self>
     fn checked_sub(&self, other: u32) -> Option<Self>;
     fn checked_add(&self, other: u32) -> Option<Self>;
 }
+
 /// 为u/i num types实现FromStrRadixHelper
 macro_rules! impl_helper_for {
     ($($t:ty)*) => ($(impl FromStrRadixHelper for $t {
@@ -56,9 +64,14 @@ macro_rules! impl_helper_for {
         }
     })*)
 }
+
 impl_helper_for! { i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize }
 
 /// 将给定基数中的字符串切片转换为整数
+///
+/// 意思就是:
+/// - u8::from_str_radix("16",10) == 16 :表示将16这个10进制数字转为整数
+/// - u8::from_str_radix("16",8) == 14 :表示将16这个8进制数字转为整数
 ///
 /// if you see this func,that means you are trying to read `int_impl::from_str_radix()`
 ///
@@ -108,7 +121,7 @@ pub fn from_str_radix<T: FromStrRadixHelper>(src: &str, radix: u32) -> Result<T,
     // of multi-byte sequences
     /// 字符串转字节切片
     let src = src.as_bytes();
-    /// 匹配字节切片首位
+    /// 匹配字节切片首位检查正负值
     let (is_positive, digits) = match src[0] {
         b'+' | b'-' if src[1..].is_empty() => {
             return Err(PIE { kind: InvalidDigit });
@@ -117,9 +130,9 @@ pub fn from_str_radix<T: FromStrRadixHelper>(src: &str, radix: u32) -> Result<T,
         b'-' if is_signed_ty => (false, &src[1..]),
         _ => (true, src),
     };
-
+    /// 从u32转适配类型
     let mut result = T::from_u32(0);
-
+    /// 确定该基数长度的文本字符串是否可以保证存储在给定的类型T中
     if can_not_overflow::<T>(radix, is_signed_ty.clone(), digits) {
         // If the len of the str is short compared to the range of the type
         // we are parsing into, then we can be certain that an overflow will not occur.

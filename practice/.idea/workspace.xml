@@ -8,19 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/src/practice/match_judge.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../design_core/num/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../design_core/num/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/practice/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/practice/mod.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../technical_term/technical_term.md" beforeDir="false" afterPath="$PROJECT_DIR$/../technical_term/technical_term.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/int_macros.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/int_macros.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/my_impl_i8.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/my_impl_i8.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/arith.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/ops/arith.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/ops/arith/add.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/core_tests/ops/arith/add.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,15 +76,13 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -128,7 +120,10 @@
       <workItem from="1688305959881" duration="4532000" />
       <workItem from="1688348466627" duration="1836000" />
       <workItem from="1688353895292" duration="694000" />
-      <workItem from="1688354853633" duration="994000" />
+      <workItem from="1688354853633" duration="1078000" />
+      <workItem from="1688358015330" duration="65000" />
+      <workItem from="1688397759011" duration="311000" />
+      <workItem from="1688536895847" duration="2420000" />
     </task>
     <servers />
   </component>

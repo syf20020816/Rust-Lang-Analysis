@@ -11,10 +11,14 @@
 //! @description:
 //! ```
 
-use crate::int_impl;
 
-#[derive(Debug)]
-pub struct MyImplI8;
+use crate::int_impl;
+use crate::{ParseIntError, from_str_radix};
+
+#[derive(Debug, Clone, Copy, PartialOrd, PartialEq)]
+pub struct MyImplI8 {
+    data: i8,
+}
 
 impl MyImplI8 {
     int_impl! {

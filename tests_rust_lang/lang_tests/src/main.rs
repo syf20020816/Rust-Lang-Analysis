@@ -15,5 +15,5 @@ fn main() {
     println!("{}", MyImplI8::MAX);
     println!("{}", MyImplI8::MIN);
     println!("{}", MyImplI8::BITS);
-    println!("{:?}",u8::from_str_radix("55",10))
+    println!("{:?}", MyImplI8::from_str_radix("16", 8));
 }

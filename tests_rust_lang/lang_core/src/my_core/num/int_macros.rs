@@ -7,7 +7,7 @@
 //! ```
 //!
 
-use super::from_str_radix;
+use crate::{ParseIntError, from_str_radix};
 
 #[macro_export]
 macro_rules! int_impl {
@@ -46,7 +46,7 @@ macro_rules! int_impl {
         // here need from_str_radix function from `super::from_str_radix()`
         //
         // so we need to see this func
-        pub fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseIntError> {
+        pub fn from_str_radix(src: &str, radix: u32) -> Result<$ActualT, ParseIntError> {
             from_str_radix(src, radix)
         }
 
