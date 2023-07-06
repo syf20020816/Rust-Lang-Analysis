@@ -117,3 +117,26 @@ a&b == 101&111 = 101
 01 + 101 = 110 == 2+4 = 6
 ```
 
+## 🦀编译器内部函数说明
+
+编译器内部函数。相应的定义在https://github.comrust-langrustblobmastercompilerrustc_codegen_llvmsrcintrinic.rs中。相应的const实现在https://github.comrust-angrustbloBMastercompile rrustc_const_evalsrcinterprisetriniscs.rs中。
+
+源码位置：`core::intrinsics`
+
+```rust
+    /// Returns the number of bits set in an integer type `T`
+    ///
+    /// Note that, unlike most intrinsics, this is safe to call;
+    /// it does not require an `unsafe` block.
+    /// Therefore, implementations must not require the user to uphold
+    /// any safety invariants.
+    ///
+    /// The stabilized versions of this intrinsic are available on the integer
+    /// primitives via the `count_ones` method. For example,
+    /// [`u32::count_ones`]
+    #[rustc_const_stable(feature = "const_ctpop", since = "1.40.0")]
+    #[rustc_safe_intrinsic]
+    #[rustc_nounwind]
+    pub fn ctpop<T: Copy>(x: T) -> T;
+```
+

@@ -6,7 +6,11 @@ use core::mem;
 ///
 /// 原因：重写的ADD并无法实现通过运算符进行计算
 use std::ops::{Mul, RangeBounds, Sub, Add};
-use crate::my_core::MyImplI8;
+use crate::my_core::{
+    MyImplI8,
+    ascii::AsciiChar
+};
+
 
 pub mod shells;
 mod int_macros;
@@ -225,3 +229,13 @@ macro_rules! my_midpoint_impl {
 }
 
 my_midpoint_impl!{u8 u16 u32 u128}
+
+/// 对应源码:
+///``` code
+///pub const fn as_ascii(&self) -> Option<ascii::Char> {
+///         ascii::Char::from_u8(*self)
+///     }
+/// ```
+pub const fn as_ascii(target:u8)->Option<AsciiChar>{
+    None
+}
