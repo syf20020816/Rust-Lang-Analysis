@@ -14,7 +14,9 @@
 //! float feature for f32,f64
 //! 浮点数特性
 #![feature(const_fn_floating_point_arithmetic)]
-
+//! unstable 核心内部函数使用特性
+#![feature(core_intrinsics)]
+#![feature(const_eval_select)]
 pub mod my_core;
 pub mod error;
 

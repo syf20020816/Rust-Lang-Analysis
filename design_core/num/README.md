@@ -191,3 +191,45 @@ pub const fn from_bits(v:u32) -> Self {
 而第二个嵌套函数 `rt_u32_to_f32` 使用了 `mem::transmute(x)` 进行类型转换，省去了类型参数的指定，而是根据变量 `x` 的类型进行推断。这种转换被称为 "runtime transmute"，它在运行时进行类型转换。与 `const transmute` 不同，运行时转换无法进行编译时优化。
 
 为什么要设计这两个嵌套函数并使用 `intrinsics::const_eval_select` 进行选择呢？这可能是为了兼容在不同编译环境下的需求。由于不同的编译器或编译选项对于编译时计算和优化的支持程度不同，使用 `const transmute` 可能在某些环境下无法正常工作。因此，提供了两种选择，并通过 `intrinsics::const_eval_select` 让编译器根据具体情况进行选择。对于普通的使用场景，直接使用 `rt_u32_to_f32(x: u32) -> f32` 可以更方便简洁。
+
+### 👍unsafe to_int_unchecked()
+
+我们将实现进行对比，这是源码的实现方式：
+
+```rust
+/// 实现向零舍入并转换为任何基元整数类型，假设该值是有限的并且适合该类型。
+impl f32{
+    pub unsafe fn to_int_unchecked<Int>(self) -> Int
+        where
+            Self: FloatToInt<Int>,
+    {
+        unsafe {
+            FloatToInt::<Int>::to_int_unchecked(self)
+        }
+    }
+}
+```
+
+这个是普通的实现方式：
+
+```rust
+///不可取
+impl crate::my_core::convert::num::private::Sealed for MyF32 {}
+
+impl FloatToInt<u8> for MyF32{
+    unsafe fn to_int_unchecked(self) -> u8 {
+    	unsafe { crate::intrinsics::float_to_int_unchecked(self) }
+    }
+}
+```
+
+这显然不可取因为private::Sealed是内部的无法暴露，另一个原因是这样的实现方式需要我们写所有的u/i num_type类型即`u8 u16 u32 u64 u128 usize i8 i16 i32 i64 i128 isize`
+
+源码采用的实现方式是实际的`impl FloatToInt<$Int> for $Float`在`core/convert/num.rs`中
+
+```rust
+impl_float_to_int!(f32 => u8 u16 u32 u64 u128 usize i8 i16 i32 i64 i128 isize);
+impl_float_to_int!(f64 => u8 u16 u32 u64 u128 usize i8 i16 i32 i64 i128 isize);
+```
+
+所以在f32.rs中可以直接使用上方的方式处理
