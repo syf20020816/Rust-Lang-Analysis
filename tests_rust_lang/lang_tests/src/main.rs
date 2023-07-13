@@ -10,11 +10,23 @@
 
 pub mod core_tests;
 
-use lang_core::my_core::ascii::{AsciiChar,AsciiCharSlice};
+use lang_core::my_core::num::f32::MyF32;
+
+pub fn outer(data: u32) -> () {
+    fn inner(data: u32) -> String {
+        println!("inner");
+        let res = data.to_string();
+        println!("{}", &res);
+        res
+    }
+    inner(data);
+}
+
 
 fn main() {
-    println!("{:?}", AsciiChar::from_u8(0));
-    println!("{:?}", AsciiChar::from_u8(6));
-    let ac_slice = [AsciiChar::Null, AsciiChar::Delete, AsciiChar::Acknowledge];
-    println!("{:?}", ac_slice.as_str());
+    // let a = MyF32::new(7.0_f32);
+    // println!("{}", MyF32::NAN);
+    // println!("{}", a.is_nan());
+    // println!("{}",)
+    outer(56_u32);
 }

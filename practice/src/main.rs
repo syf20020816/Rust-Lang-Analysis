@@ -1,18 +1,21 @@
 use std::char::from_u32;
+use std::collections::HashMap;
 use std::mem;
 use std::ops::Add;
+use std::str::FromStr;
 
 
 pub mod practice;
 pub mod tests;
 
 
+fn do_something(v: &mut Vec<&str>) {
+    let a = "t";
+    v.push(a);
+}
+
 fn main() {
-    //01
-    println!("{:?}",1_u8.count_ones());
-    //10
-    println!("{:?}",2_u8.count_ones());
-    //
-    println!("{:?}",53_u8.count_ones());
-    println!("{:?}",5_u8.count_ones());
+    let mut c: Vec<&str> = vec![];
+    do_something(&mut c);
+    println!("{:?}", c);
 }

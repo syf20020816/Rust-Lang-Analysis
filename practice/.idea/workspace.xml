@@ -9,6 +9,11 @@
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/num/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,18 +74,20 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package practice --bin practice" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <option name="channel" value="DEFAULT" />
@@ -96,6 +103,11 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Run" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -117,6 +129,17 @@
       <workItem from="1688358015330" duration="65000" />
       <workItem from="1688397759011" duration="311000" />
       <workItem from="1688536895847" duration="3180000" />
+      <workItem from="1688668781088" duration="332000" />
+      <workItem from="1688690962020" duration="2278000" />
+      <workItem from="1688913519330" duration="418000" />
+      <workItem from="1688957380489" duration="17000" />
+      <workItem from="1688957554077" duration="110000" />
+      <workItem from="1688957761955" duration="6000" />
+      <workItem from="1688957907539" duration="661000" />
+      <workItem from="1688978859113" duration="842000" />
+      <workItem from="1688980081899" duration="165000" />
+      <workItem from="1688981060534" duration="1572000" />
+      <workItem from="1688982730428" duration="1649000" />
     </task>
     <servers />
   </component>

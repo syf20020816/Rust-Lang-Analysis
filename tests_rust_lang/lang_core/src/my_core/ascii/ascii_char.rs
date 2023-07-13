@@ -280,7 +280,7 @@ pub trait AsciiCharSlice<Rhs = AsciiChar> {
 }
 
 /// # impl []{}
-///Rust 不允许为原生类型（primitive types）实现直接的 inherent impl。原生类型包括像 u8、char 这样的基本类型。
+/// Rust 不允许为原生类型（primitive types）实现直接的 inherent impl。原生类型包括像 u8、char 这样的基本类型。
 ///
 /// Rust 提供了扩展特性（extension trait）的机制。为原生类型创建一个 trait，然后在该 trait 上实现方法。
 ///

@@ -9,6 +9,12 @@
 //! `#![feature(lang_items)]`
 //! means design a lang items
 #![feature(lang_items)]
+//! support AsciiChar!
+#![feature(ascii_char)]
+//! float feature for f32,f64
+//! 浮点数特性
+#![feature(const_fn_floating_point_arithmetic)]
+
 pub mod my_core;
 pub mod error;
 

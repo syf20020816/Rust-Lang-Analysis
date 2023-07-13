@@ -8,14 +8,15 @@ use core::mem;
 use std::ops::{Mul, RangeBounds, Sub, Add};
 use crate::my_core::{
     MyImplI8,
-    ascii::AsciiChar
+    ascii::AsciiChar,
 };
-
+use std::ascii::Char;
 
 pub mod shells;
 mod int_macros;
 pub mod my_impl_i8;
 pub mod error;
+pub mod f32;
 
 use self::error::{ParseIntError, IntErrorKind};
 // use crate::my_core::Add;
@@ -209,8 +210,8 @@ pub fn from_str_radix<T: FromStrRadixHelper>(src: &str, radix: u32) -> Result<T,
 ///
 /// midpoint_impl!{u8 u16 u32 u64 u128}
 /// ```
-pub struct MidPoint<T>{
-    data:T
+pub struct MidPoint<T> {
+    data: T,
 }
 
 macro_rules! my_midpoint_impl {
@@ -228,14 +229,19 @@ macro_rules! my_midpoint_impl {
     )*);
 }
 
-my_midpoint_impl!{u8 u16 u32 u128}
+my_midpoint_impl! {u8 u16 u32 u128}
 
+
+/// 如果此字节的值在ASCII范围内，则将其作为ASCII字符返回。否则，返回None
 /// 对应源码:
 ///``` code
-///pub const fn as_ascii(&self) -> Option<ascii::Char> {
+/// pub const fn as_ascii(&self) -> Option<ascii::Char> {
 ///         ascii::Char::from_u8(*self)
 ///     }
 /// ```
-pub const fn as_ascii(target:u8)->Option<AsciiChar>{
-    None
+pub const fn as_ascii(target: u8) -> Option<Char> {
+    Char::from_u8(target)
 }
+
+// 其他很多方法都是1.72.0开始增加的新方法，和上方的as_ascii万变不离其宗就不继续写了
+// 看到这里请移步下一个实现f32,f64
