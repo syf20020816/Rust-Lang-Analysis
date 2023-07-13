@@ -25,10 +25,11 @@
 //! @description:
 //! ```
 
+use std::{intrinsics, mem};
+
 pub struct MyF32 {
     data: f32,
 }
-
 
 
 impl MyF32 {
@@ -54,8 +55,8 @@ impl MyF32 {
     /// 无穷小 Lim(-1/0)
     pub const NEG_INFINITY: f32 = -1.0_f32 / 0.0_f32;
 
-    pub const fn new(data:f32)->Self{
-        MyF32{
+    pub const fn new(data: f32) -> Self {
+        MyF32 {
             data
         }
     }
@@ -71,10 +72,28 @@ impl MyF32 {
     // 4. is_normal : 判断是否为正常值(非无穷,非非正常值,非NaN)
 
     /// 判断f32属于那种类型返回 FpCategory
-    pub const fn classify(self)->FpCategory{
+    pub const fn classify(self) -> FpCategory {
         // 通过对于is_finite,is_infinite,is_subnormal,is_normal进行处理
         FpCategory::Nan
     }
+
+    /// 判断传入的binary类型属于那种f32类型
+    const fn classify_bits(b: u32) -> FpCategory {
+        //0111 1111 1000 0000 0000 0000 0000 0000
+        const EXP_MASK: u32 = 0x7f800000;
+        //0111 1111 1111 1111 1111 1111
+        const MAN_MASK: u32 = 0x007fffff;
+        // 这里并不是错误！
+        // see ： technical_term.md Rust非绑定模式
+        match (b & MAN_MASK, b & EXP_MASK) {
+            (0, EXP_MASK) => FpCategory::Infinite,
+            (_, EXP_MASK) => FpCategory::Nan,
+            (0, 0) => FpCategory::Zero,
+            (_, 0) => FpCategory::Subnormal,
+            _ => FpCategory::Normal,
+        }
+    }
+
 
     // 当前f32值的后一个f32
     // pub const fn next_up(self)->Self{
@@ -86,22 +105,34 @@ impl MyF32 {
     //
     // }
 
-
-    // pub const fn to_bits(self)->u32{
-    //     const fn ct_f32_to_u32(ct:f32)->u32{
-    //         match ct {
-    //
-    //         }
-    //     }
-    // }
+    /// 通过内部嵌套方法进行
+    pub const fn from_bits(v:u32) -> Self {
+        const fn ct_u32_to_f32(ct: u32) -> f32 {
+            match Self::classify_bits(ct){
+                FpCategory::Nan => {
+                    panic!("nan err")
+                }
+                FpCategory::Subnormal => {
+                    panic!("subnormal err")
+                }
+                FpCategory::Infinite | FpCategory::Normal | FpCategory::Zero => {
+                    unsafe { mem::transmute::<u32, f32>(ct) }
+                }
+            }
+        }
+        const fn rt_u32_to_f32(x:u32)->f32{
+            unsafe { mem::transmute(x) }
+        }
+        unsafe { intrinsics::const_eval_select((v,), ct_u32_to_f32, rt_u32_to_f32) }
+    }
 
 }
 
 /// 浮点数的枚举类型
-pub enum FpCategory{
+pub enum FpCategory {
     Nan,
     Infinite,
     Zero,
     Subnormal,
-    Normal
+    Normal,
 }

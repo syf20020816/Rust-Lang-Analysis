@@ -140,3 +140,100 @@ a&b == 101&111 = 101
     pub fn ctpop<T: Copy>(x: T) -> T;
 ```
 
+## 🦀Rust 非绑定模式(non-binding)
+
+在 Rust 的 match 表达式中，每个模式匹配的分支都会对变量进行模式解构，并根据需要移动、借用或复制变量。
+
+然而，在 Rust 1.26 版本之后，Rust 引入了非绑定（non-binding）的模式，允许在 match 表达式中使用未绑定的变量。这些未绑定的变量在模式匹配过程中不会引起任何移动、借用或复制操作。
+
+在如下代码示例中:
+
+```rust
+#[derive(Debug)]
+pub enum FpCategory {
+    Nan,
+    Infinite,
+    Zero,
+    Subnormal,
+    Normal,
+}
+
+const fn classify_bits(b: u32) -> FpCategory {
+    //0111 1111 1000 0000 0000 0000 0000 0000
+    const EXP_MASK: u32 = 0x7f800000;
+    //0111 1111 1111 1111 1111 1111
+    const MAN_MASK: u32 = 0x007fffff;
+    //这里的match编辑器会提示你:Use of moved value 
+    //但实际上并没有错误
+    match (b & MAN_MASK, b & EXP_MASK) {
+        (0, EXP_MASK) => FpCategory::Infinite,
+        (_, EXP_MASK) => FpCategory::Nan,
+        (0, 0) => FpCategory::Zero,
+        (_, 0) => FpCategory::Subnormal,
+        _ => FpCategory::Normal,
+    }
+}
+
+
+fn main() {
+    let a: u32 = 0x1ff;
+    let res = classify_bits(a);
+    dbg!(res);
+}
+```
+
+这里`(b & MAN_MASK, b & EXP_MASK)`是一个非绑定的模式，其中的 b 并不会被移动，因为它没有被使用。
+
+## 🦀内嵌函数（Nested Function）
+
+这里我们要学习的是一种内嵌函数的写法
+
+优点：
+
+1. 封装性和私有性：内嵌函数只在其父函数内部可见，而对于外部代码来说是隐藏的。这可以增强代码的封装性和模块化，使得内部逻辑对外部代码是不可见的，提高了代码的安全性和可维护性。
+2. 代码复用：通过将功能相似的代码包装在内部函数中，可以避免代码重复。内嵌函数可以被父函数多次调用，提供了一种代码复用的机制。
+3. 逻辑清晰性：内嵌函数可以将复杂的逻辑分解成更小的、更易理解的部分。通过将代码分割成逻辑相关的块，可以提高代码的可读性和可理解性。
+
+缺点：
+
+1. 可见范围限制：内嵌函数只能在其父函数内部调用，无法在其它函数或模块中使用。如果需要在其它地方复用该功能，就需要将内嵌函数提取到一个可公开调用的位置。
+2. 函数间通信限制：内嵌函数无法直接与父函数外的代码进行交互，因为它们与外部作用域隔离。如果需要与父函数外的代码进行通信，可能需要使用闭包或参数传递等机制。
+
+```rust
+pub fn outer(data: u32) -> () {
+    fn inner(data: u32) -> String {
+        println!("inner");
+        let res = data.to_string();
+        println!("{}", &res);
+        res
+    }
+    inner(data);
+}
+
+
+fn main() {
+    outer(56_u32);
+}
+```
+
+## 🦀Rust编译器推断执行函数
+
+这里要介绍一个内部函数：编译器推断执行函数`intrinsics::const_eval_select()`
+
+``` rust
+core::intrinsics
+pub extern "rust-intrinsic" fn const_eval_select<ARG: Tuple, F, G, RET>(arg: ARG, called_in_const: F, called_at_rt: G) -> RET where G: FnOnce<ARG, Output = RET>,F: FnOnce<ARG, Output = RET>,
+```
+### 作用
+
+根据上下文选择要调用的函数。 如果在编译时对该函数求值，则对该内在函数的调用将被对called_in_const的调用所取代。否则，它将被一个对called_at_rt的调用所取代。 类型要求 这两个函数必须都是函数项。它们不能是函数指针或闭包。第一个函数必须是常量fn。 arg将是传递给两个函数中任意一个的元组参数，因此，两个函数必须接受相同类型的参数。两个函数都必须返回RET。
+
+### 为什么要用?
+
+他的主要使用原因是为了在不同的编译环境和编译器优化的情况下提供更好的兼容性和性能。但是这引入了一个unsafe的操作,所以开发者需要保证在使用这些功能前后的上下文中，代码的行为是安全的，并且符合 Rust 的内存安全规则。若你无法做到优秀的控制，我们更应该分离实现，不去使用编译器推断执行函数。
+
+```rust
+unsafe{
+    intrinsics::const_eval_select((data,), const_fn, dyn_fn)
+}
+```
