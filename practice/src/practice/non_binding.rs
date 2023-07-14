@@ -1,12 +1,3 @@
-use std::char::from_u32;
-use std::collections::HashMap;
-use std::mem;
-use std::ops::Add;
-
-
-pub mod practice;
-pub mod tests;
-
 #[derive(Debug)]
 enum MatchU32 {
     Zero,

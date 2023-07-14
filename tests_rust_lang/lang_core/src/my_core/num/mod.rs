@@ -17,6 +17,10 @@ mod int_macros;
 pub mod my_impl_i8;
 pub mod error;
 pub mod f32;
+pub mod f64;
+/// 自定义浮点类型
+pub mod diy_float;
+pub mod int_log10;
 
 use self::error::{ParseIntError, IntErrorKind};
 // use crate::my_core::Add;

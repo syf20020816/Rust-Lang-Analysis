@@ -155,3 +155,17 @@ pub enum FpCategory {
     Subnormal,
     Normal,
 }
+
+/// 当然实际上f32,f64中的consts有更多的内容这里简单列举几个
+pub mod consts {
+    /// Archimedes' constant (π)
+    pub const PI: f32 = 3.14159265358979323846264338327950288_f32;
+    /// 2/sqrt(π)
+    pub const FRAC_2_SQRT_PI: f32 = 1.12837916709551257389615890312154517_f32;
+    /// Euler's number (e)
+    pub const E: f32 = 2.71828182845904523536028747135266250_f32;
+    /// log<sub>2</sub>(e)
+    pub const LOG2_E: f32 = 1.44269504088896340735992468100189214_f32;
+    /// ln(2)
+    pub const LN_2: f32 = 0.693147180559945309417232121458176568_f32;
+}

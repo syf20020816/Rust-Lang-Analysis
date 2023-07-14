@@ -247,3 +247,59 @@ unsafe{
     intrinsics::const_eval_select((data,), const_fn, dyn_fn)
 }
 ```
+
+## 🦀impl [] and impl () 自定义复合类型实现
+
+Rust 不允许为原生类型（primitive types）实现直接的 inherent impl。原生类型包括像 u8、char 这样的基本类型。 Rust 提供了扩展特性（extension trait）的机制。为原生类型创建一个 trait，然后在该 trait 上实现方法。无论是元组还是数组都支持这种写法。
+
+### impl []
+
+```rust
+pub trait AsciiCharSlice<Rhs = AsciiChar> {
+    type Origin;
+    fn as_str(&self) -> Vec<&str>;
+}
+
+impl AsciiCharSlice for [AsciiChar] {
+    type Origin = AsciiChar;
+
+    fn as_str(&self) -> Vec<&str> {
+        let mut res:Vec<&str> = Vec::new();
+        for item in self {
+            match item {
+                AsciiChar::Null => res.push("Null"),
+                AsciiChar::Delete => res.push("Delete"),
+                _ => ()
+            }
+        }
+        res
+    }
+}
+```
+
+### impl ()
+
+```rust
+trait TupleTrait{
+    fn do_change()->();
+}
+
+impl TupleTrait for (f32,f32,f32){
+    fn do_change() -> () {
+        println!("{}","do change");
+    }
+}
+
+fn main() {
+    let a:(f32, f32, f32) = (1.0_f32, 1.2_f32, 25.6_f32);
+    let _ = <(f32, f32, f32)>::do_change();
+}
+```
+
+## 🦀`?Sized`非固定大小数据
+
+关键字 `?Sized` 用于表示一个类型可能是不定大小（unsized）的类型。不定大小类型是指在编译时无法确定具体大小的类型，例如动态分配的数组或 trait 对象。
+
+常用于方法的泛型约束上，`T: ?Sized` 表示泛型类型 `T` 可能是不定大小的类型。这意味着函数可以接受任意大小的 `T` 类型作为参数，包括不定大小的类型。
+
+为什么要使用 `?Sized` 前缀呢？这是因为 Rust 默认情况下要求泛型类型是大小已知的（sized），这样才能在栈上分配内存。但是有些类型的大小是在运行时才能确定的，例如具有动态数组长度的数组类型，或者 trait 对象。在这种情况下，我们需要在类型前面加上 `?Sized` 来表明它是不定大小的，从而允许它们作为泛型参数。
