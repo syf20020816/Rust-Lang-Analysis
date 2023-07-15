@@ -8,14 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/src/practice/impl_arr.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/impl_tuple.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/practice/non_binding.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../design_core/ascii/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../design_core/ascii/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/fmt/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/fmt/rt.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/practice/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/practice/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../technical_term/technical_term.md" beforeDir="false" afterPath="$PROJECT_DIR$/../technical_term/technical_term.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/any.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/any.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,20 +74,9 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package practice --bin practice" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -141,6 +131,8 @@
       <workItem from="1688981060534" duration="1572000" />
       <workItem from="1688982730428" duration="1649000" />
       <workItem from="1689303598835" duration="3702000" />
+      <workItem from="1689411720403" duration="445000" />
+      <workItem from="1689412593577" duration="3772000" />
     </task>
     <servers />
   </component>

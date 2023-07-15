@@ -7,20 +7,24 @@ use std::ops::Add;
 pub mod practice;
 pub mod tests;
 
-#[derive(Debug)]
-enum MatchU32 {
-    Zero,
-    NotNaN,
-}
+use std::fmt;
+use std::marker::PhantomData;
 
-fn match_u32(jd_num: u32) -> MatchU32 {
-    match (jd_num * 2, jd_num * 5) {
-        (0_u32, 0_u32) => MatchU32::Zero,
-        _ => MatchU32::NotNaN
+struct Foo<T>(i32, String, PhantomData<T>);
+
+impl<T> fmt::Debug for Foo<T> {
+    fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result {
+        fmt.debug_tuple("Foo2")
+            .field(&self.0)
+            .field(&self.1)
+            .field(&format_args!("_"))
+            .finish()
     }
 }
 
+
 fn main() {
-    println!("{:?}",match_u32(0_u32));
-    println!("{:?}",match_u32(6_u32));
+    println!("{}", format!("{:?}", Foo(10, "Hello".to_string(), PhantomData::<u8>)));
 }
+
+

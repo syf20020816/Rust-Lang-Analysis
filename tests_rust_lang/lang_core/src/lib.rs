@@ -17,6 +17,8 @@
 //! unstable 核心内部函数使用特性
 #![feature(core_intrinsics)]
 #![feature(const_eval_select)]
+#![feature(const_type_id)]
+#![feature(const_type_name)]
 pub mod my_core;
 pub mod error;
 
