@@ -7,13 +7,13 @@
 //! @description:
 //! ```
 
-trait Default: Sized {
+pub trait Default: Sized {
     fn default() -> Self;
 }
 /// 是一个 Rust 内置的宏声明。
 /// 该宏在 Rust 编译器内部使用，用于为一些结构体和枚举类型生成默认的实现
-pub macro Default($item:item){}
-
+/// 为了让代码通过编译，这里就直接去除了
+/// pub macro Default($item:item){}
 macro_rules! default_impl {
     ($t:ty,$v:expr) => {
         impl Default for $t{

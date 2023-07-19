@@ -4,8 +4,9 @@ pub mod internal_macros;
 pub mod ascii;
 pub mod convert;
 pub mod any;
-pub mod fmt;
+// pub mod fmt;
 pub mod default;
+pub mod option;
 
 pub use num::shells::my_i8;
 /// pay attention to here!
