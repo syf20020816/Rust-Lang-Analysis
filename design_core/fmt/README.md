@@ -1,5 +1,9 @@
 # fmt
 
+ `Formatter` 是一个格式化输出的中间层，它负责将格式化的数据转发到底层的输出缓冲区（buffer）。
+
+`Formatter` 结构体的核心功能是将格式化数据写入一个或多个输出缓冲区，这些缓冲区可以是标准输出、文件、字符串等等。为了实现这种灵活性，`Formatter` 并没有直接实现 `Write` trait 中的方法，而是利用 `Write` trait 提供的抽象接口，在内部将格式化数据传递给底层的缓冲区。
+
 ## type
 
 ### Result
@@ -10,9 +14,9 @@ pub type Result = result::Result<(), Error>
 
 
 
-## prepare
 
-### Formatter 格式化配置
+
+## Formatter 格式化配置
 
 ```rust
 /// 格式化程序表示与格式化相关的各种选项。
@@ -28,7 +32,71 @@ pub struct Formatter<'a> {
 }
 ```
 
-### rt::Alignment 预定义文本位置
+### alternate()
+
+确定是否指定了`#`标志，即使用:`{:#}`
+
+```rust
+pub fn alternate(&self) -> bool {
+        self.flags & (1 << rt::Flag::Alternate as u32) != 0
+}
+```
+
+从这里看出使用了`Flag::Alternate`转化为u32,最后转出来的值为2（请看`rt::Flag`）
+
+```
+self.flag & (1 << 2) != 0
+```
+
+### write_str()
+
+将一些数据写入此格式化程序中包含的基础缓冲区
+
+```rust
+pub fn write_str(&mut self, data: &str) -> Result {
+        self.buf.write_str(data)
+}
+```
+
+这里则是调用`Write trait`中的`write_str`方法请看下面的`impl Write for Formatter`中的write_str方法
+
+### impl Write for Formatter
+
+为Formatter实现Write
+
+```rust
+impl Write for Formatter<'_> {
+    fn write_str(&mut self, s: &str) -> Result {
+        self.buf.write_str(s)
+    }
+
+    fn write_char(&mut self, c: char) -> Result {
+        self.buf.write_char(c)
+    }
+
+    fn write_fmt(&mut self, args: Arguments<'_>) -> Result {
+        write(self.buf, args)
+    }
+}
+```
+
+
+
+## Write trait
+
+将数据写入或格式化为接受缓冲区或流的Unicode的特性。 此特性只接受UTF-8编码的数据，并且不可刷新。如果您只想接受Unicode而不需要刷新，那么您应该实现这个特性；否则，您应该实现`std::io::Write。`
+
+### write_str()
+
+将字符串切片写入此写入程序，返回写入是否成功
+
+```rust
+fn write_str(&mut self, s: &str) -> Result;
+```
+
+
+
+## rt::Alignment 预定义文本位置
 
 四种类型：左对齐，右对齐，居中，未定义
 
@@ -45,7 +113,7 @@ pub enum Alignment {
 
 该trait只有一个方法fmt
 
-```
+```rust
 fn fmt(&self, f: &mut Formatter<'_>) -> Result;
 ```
 
@@ -96,8 +164,10 @@ pub struct DebugTuple<'a, 'b: 'a> {
 ```rust
 pub fn field(&mut self, value: &dyn fmt::Debug) -> &mut Self {
         self.result = self.result.and_then(|_| {
+            // 判断是否使用优雅的输出格式
             if self.is_pretty() {
                 if self.fields == 0 {
+                    // 将`(\n`写入Formmatter的buf的缓冲区中
                     self.fmt.write_str("(\n")?;
                 }
                 let mut slot = None;
@@ -117,7 +187,20 @@ pub fn field(&mut self, value: &dyn fmt::Debug) -> &mut Self {
     }
 ```
 
+- is_pretty()：判断优雅输出
+- write_str()：将一些数据写入此格式化程序中包含的基础缓冲区
 
+### is_pretty()
+
+判断是否使用优雅的输出格式
+
+```rust
+fn is_pretty(&self) -> bool {
+        self.fmt.alternate()
+    }
+```
+
+这里调用了`fmt::Formatter`的`alternate`方法进行判断
 
 ## debug_tuple_new()
 
@@ -133,4 +216,23 @@ pub(super) fn debug_tuple_new<'a, 'b>(
 
 这个方法用于构建一个DebugTuple
 
+# rt
+
+## Flag
+
+这是一种标志，用于标记格式化输出
+
+```rust
+pub(super) enum Flag {
+    // +
+    SignPlus,
+    // -
+    SignMinus,
+    // :#
+    Alternate,
+    SignAwareZeroPad,
+    DebugLowerHex,
+    DebugUpperHex,
+}
+```
 

@@ -8,15 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17ffa128-06e7-4967-b0f7-03eafb8613c4" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/fmt/mod.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/fmt/rt.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../technical_term/technical_term.md" beforeDir="false" afterPath="$PROJECT_DIR$/../technical_term/technical_term.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/any.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/any.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_core/src/my_core/mod.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/../tests_rust_lang/lang_tests/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +124,7 @@
       <workItem from="1688982730428" duration="1649000" />
       <workItem from="1689303598835" duration="3702000" />
       <workItem from="1689411720403" duration="445000" />
-      <workItem from="1689412593577" duration="3772000" />
+      <workItem from="1689412593577" duration="3773000" />
     </task>
     <servers />
   </component>

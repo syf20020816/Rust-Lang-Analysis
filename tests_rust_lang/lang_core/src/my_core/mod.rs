@@ -5,6 +5,7 @@ pub mod ascii;
 pub mod convert;
 pub mod any;
 pub mod fmt;
+pub mod default;
 
 pub use num::shells::my_i8;
 /// pay attention to here!
